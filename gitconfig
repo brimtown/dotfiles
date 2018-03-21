@@ -1,0 +1,19 @@
+[url "ssh://git@heroku.com/"]
+	insteadOf = https://git.heroku.com/
+[user]
+	name = Tim Brown
+	email = brown.tim.lee@gmail.com
+[push]
+	default = current
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = true
+	pager = true
+[core]
+[rerere]
+	enabled = true
+[rebase]
+	autosquash = true
