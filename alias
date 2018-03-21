@@ -1,0 +1,13 @@
+# Git specific
+alias gs='git status'
+alias gam='git commit --amend --no-edit'
+alias gpf='git push --force-with-lease'
+alias gap='git add -p'
+alias gcom='git checkout master'
+alias gcob='git checkout -b'
+alias gcf='git commit --fixup'
+alias gsha='git log --format=format:%H'
+alias rebasemaster='git fetch && git rebase origin/master'
+alias recentbranches='git for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short)" | head -n 10'
+
+alias rm='trash'
