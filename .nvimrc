@@ -5,6 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'ajh17/Spacegray.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'djoshea/vim-autoread'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mxw/vim-jsx'
@@ -63,6 +64,7 @@ set cursorline               " highlight current line
 
 set nobackup
 set noswapfile
+set autoread
 
 " Write all writeable buffers when changing buffers or losing focus.
 set autowriteall                " Save when doing various buffer-switching things.
