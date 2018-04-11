@@ -4,6 +4,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Make sure you use single quotes
 Plug 'airblade/vim-gitgutter'
 Plug 'ajh17/Spacegray.vim'
+Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'djoshea/vim-autoread'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -85,7 +86,7 @@ endif
 
 set fillchars="" "remove the pipe operator from splits
 
-colorscheme spacegray " set colorscheme
+colorscheme base16-tomorrow-night " set colorscheme
 let g:airline_theme='zenburn'
 
 " Add flow syntax to vim-javascript
@@ -122,6 +123,17 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
+
+" ale symbols
+let g:ale_sign_error = "●"
+let g:ale_sign_warning = "●"
+highlight ALEErrorSign ctermfg=9 ctermbg=15 guifg=#C30500 guibg=#282A2E
+highlight ALEWarningSign ctermfg=11 ctermbg=15 guifg=#ED6237 guibg=#282A2E
+
+" gitgutter symbols
+let g:gitgutter_sign_added = '＋'
+let g:gitgutter_sign_modified = '～'
+let g:gitgutter_sign_removed = '－'
 
 " airline symbols
 let g:airline_left_sep = ''
