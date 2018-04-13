@@ -14,19 +14,22 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'djoshea/vim-autoread'
+Plug 'edkolev/tmuxline.vim'
+Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-grepper'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'roxma/nvim-completion-manager'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'sjl/vitality.vim'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
@@ -41,8 +44,10 @@ let mapleader="," "change leader
 nnoremap \ :NERDTreeToggle<CR> 
 nnoremap \| :NERDTreeFind<CR> 
 nnoremap <leader>f :GFiles --exclude-standard --cached --others<CR> 
-nnoremap <leader>a :Ag 
+nnoremap <leader>a :Grepper<CR>
 nnoremap <leader>s :%s/
+nnoremap <leader>g :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader><space> :ALEFix<CR>
 
 " navigate splits without C-W
@@ -51,9 +56,15 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" vim tabs
 nnoremap <C-[> :tabp<CR>
 nnoremap <C-]> :tabn<CR>
 nnoremap <C-t> :Te<CR>
+
+" search
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 " =========================
 " Settings
@@ -71,6 +82,7 @@ set listchars=trail:·
 set showmatch       " show matching braces
 set splitright
 set splitbelow
+set colorcolumn=81
 
 set showcmd                  " show command in bottom bar
 set cursorline               " highlight current line
@@ -78,12 +90,13 @@ set cursorline               " highlight current line
 set nobackup
 set noswapfile
 set autoread
+set nohlsearch    "disable highlighting after the search
 
 " ========================
 " Autosave
 
 " decrease timeout length when hitting escape
-set timeoutlen=100 ttimeoutlen=0
+set timeoutlen=1000 ttimeoutlen=0
 
 " Write all writeable buffers when changing buffers or losing focus.
 set autowriteall                " Save when doing various buffer-switching things.
