@@ -7,6 +7,10 @@ call plug#begin('~/.config/nvim/plugged')
 " Make sure you use single quotes
 Plug 'airblade/vim-gitgutter'
 Plug 'ajh17/Spacegray.vim'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'djoshea/vim-autoread'
@@ -14,6 +18,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
+Plug 'roxma/nvim-completion-manager'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'sjl/vitality.vim'
@@ -38,6 +43,7 @@ nnoremap \| :NERDTreeFind<CR>
 nnoremap <leader>f :GFiles --exclude-standard --cached --others<CR> 
 nnoremap <leader>a :Ag 
 nnoremap <leader>s :%s/
+nnoremap <leader><space> :ALEFix<CR>
 
 " navigate splits without C-W
 nnoremap <C-J> <C-W><C-J>
@@ -84,6 +90,24 @@ set autowriteall                " Save when doing various buffer-switching thing
 autocmd InsertLeave,BufLeave,FocusLost * nested silent! wall  " Save anytime we leave a buffer or we lose focus.
 
 " =======================
+" Autocomplete
+
+let g:LanguageClient_serverCommands = {
+\ 'javascript': ['flow-language-server', '--stdio'],
+\ 'javascript.jsx': ['flow-language-server', '--stdio'],
+\ }
+
+" (Optionally) automatically start language servers.
+let g:LanguageClient_autoStart = 1
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+" =======================
 " Linting
 
 " Add flow syntax to vim-javascript
@@ -91,7 +115,6 @@ let g:javascript_plugin_flow = 1
 
 " Run prettier as an ALE fixer
 let g:ale_fixers = {'javascript': ['prettier']}
-let g:ale_fix_on_save = 1
 
 "  =======================
 " Colors & themes
