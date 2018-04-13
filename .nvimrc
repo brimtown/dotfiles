@@ -81,7 +81,7 @@ set timeoutlen=100 ttimeoutlen=0
 
 " Write all writeable buffers when changing buffers or losing focus.
 set autowriteall                " Save when doing various buffer-switching things.
-autocmd InsertLeave,BufLeave,FocusLost * nested silent! write  " Save anytime we leave a buffer or we lose focus.
+autocmd InsertLeave,BufLeave,FocusLost * nested silent! wall  " Save anytime we leave a buffer or we lose focus.
 
 " =======================
 " Linting
@@ -154,9 +154,9 @@ let g:ale_sign_error = "┃"
 let g:ale_sign_warning = "┃"
 
 " gitgutter symbols
-let g:gitgutter_sign_added = '＋'
-let g:gitgutter_sign_modified = '～'
-let g:gitgutter_sign_removed = '－'
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
 
 " unicode symbols
 let g:airline_left_sep = '»'
