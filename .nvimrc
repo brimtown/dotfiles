@@ -18,6 +18,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-grepper'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
@@ -55,11 +56,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-" vim tabs
-nnoremap <C-[> :tabp<CR>
-nnoremap <C-]> :tabn<CR>
-nnoremap <C-t> :Te<CR>
 
 " search
 map /  <Plug>(incsearch-forward)

@@ -1,4 +1,5 @@
 # If you come from bash you might have to change your $PATH.
+export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
