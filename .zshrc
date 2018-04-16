@@ -16,7 +16,7 @@ DISABLE_AUTO_TITLE="true"
 # Explicitly set the buffer size for performance
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
 
-plugins=(git gitfast zsh-autosuggestions history-substring-search zsh-syntax-highlighting)
+plugins=(git gitfast tmux zsh-autosuggestions history-substring-search zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 

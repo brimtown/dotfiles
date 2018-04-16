@@ -14,6 +14,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'djoshea/vim-autoread'
+Plug 'dunckr/js_alternate.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -46,6 +47,7 @@ nnoremap \ :NERDTreeToggle<CR>
 nnoremap \| :NERDTreeFind<CR> 
 nnoremap <leader>f :GFiles --exclude-standard --cached --others<CR> 
 nnoremap <leader>a :Grepper<CR>
+nnoremap <leader>A :call js_alternate#run()<CR>
 nnoremap <leader>s :%s/
 nnoremap <leader>g :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR>
