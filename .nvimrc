@@ -22,6 +22,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-grepper'
 Plug 'mxw/vim-jsx'
+Plug 'Olical/vim-enmasse'
 Plug 'pangloss/vim-javascript'
 Plug 'roxma/nvim-completion-manager'
 Plug 'rking/ag.vim'
@@ -50,7 +51,7 @@ nnoremap <leader>a :Grepper<CR>
 nnoremap <leader>A :call js_alternate#run()<CR>
 nnoremap <leader>s :%s/
 nnoremap <leader>g :Gblame<CR>
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>G :Gstatus<CR>
 nnoremap <leader><space> :ALEFix<CR>
 
 " navigate splits without C-W
@@ -58,6 +59,12 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" resize split with Shift+Arrow Keys
+nnoremap <S-Left> :vertical resize -3<CR>
+nnoremap <S-Right> :vertical resize +3<CR>
+nnoremap <S-Up> :resize -3<CR>
+nnoremap <S-Down> :resize +3<CR>
 
 " search
 map /  <Plug>(incsearch-forward)
