@@ -3887,7 +3887,7 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>1106 454 606 469 0 0 2560 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>957 1088 1018 447 0 0 3008 1670 </string>
+	<string>957 1114 1018 447 0 0 3008 1670 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
@@ -7623,7 +7623,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-05-14T14:09:22Z</date>
+	<date>2018-05-15T14:09:22Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -7631,7 +7631,7 @@
 	<key>ShowFullScreenTabBar</key>
 	<false/>
 	<key>ShowMetalFPSmeter</key>
-	<true/>
+	<false/>
 	<key>ShowNewOutputIndicator</key>
 	<false/>
 	<key>ShowPaneTitles</key>

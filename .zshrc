@@ -73,3 +73,10 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Clear iTerm window title
 echo "\033]; \007"
+
+# Use rbenv
+eval "$(rbenv init -)"
+
+# Use nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
