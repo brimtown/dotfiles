@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/timbrown/.oh-my-zsh

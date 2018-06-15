@@ -16,6 +16,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'djoshea/vim-autoread'
 Plug 'dunckr/js_alternate.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'fatih/vim-go'
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -84,6 +85,7 @@ set autoindent
 set copyindent      " copy indent from the previous line
 set list            " show whitespace
 set listchars=trail:·
+set listchars=tab:\│\ ,trail:-,extends:>,precedes:<,nbsp:+
 set showmatch       " show matching braces
 set splitright
 set splitbelow
