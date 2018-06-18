@@ -1,3 +1,7 @@
+# Use nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -77,6 +81,3 @@ echo "\033]; \007"
 # Use rbenv
 eval "$(rbenv init -)"
 
-# Use nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
