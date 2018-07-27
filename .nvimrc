@@ -136,6 +136,9 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 " Add flow syntax to vim-javascript
 let g:javascript_plugin_flow = 1
 
+let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_linters = { 'javascript': ['flow', 'eslint'] }
+
 " Run prettier as an ALE fixer
 let g:ale_fixers = {'javascript': ['prettier']}
 
