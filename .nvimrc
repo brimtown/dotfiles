@@ -25,9 +25,9 @@ Plug 'mhinz/vim-grepper'
 Plug 'mxw/vim-jsx'
 Plug 'Olical/vim-enmasse'
 Plug 'pangloss/vim-javascript'
-Plug 'roxma/nvim-completion-manager'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sjl/vitality.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -70,6 +70,10 @@ nnoremap <S-Down> :resize +3<CR>
 " allow copying from nvim to system clipboard within tmux
 vnoremap <S-y> "+y
 
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> <Space> :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <C-Space> :call LanguageClient_textDocument_documentSymbol()<CR>
+
 " search
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
@@ -78,7 +82,7 @@ map g/ <Plug>(incsearch-stay)
 " =========================
 " Settings
 
-set number		"display linenumbers
+set number          "display linenumbers
 
 set tabstop=2       " number of visual spaces per TAB
 set softtabstop=2   " number of spaces in tab when editing
@@ -115,6 +119,8 @@ autocmd InsertLeave,BufLeave,FocusLost * nested silent! wall  " Save anytime we 
 " =======================
 " Autocomplete
 
+let g:deoplete#enable_at_startup = 1
+
 let g:LanguageClient_serverCommands = {
 \ 'javascript': ['flow-language-server', '--stdio'],
 \ 'javascript.jsx': ['flow-language-server', '--stdio'],
@@ -126,9 +132,10 @@ let g:LanguageClient_autoStart = 1
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+" Disable deoplete's preview
+
+" Close preview window after the completion is finished
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " =======================
 " Linting
