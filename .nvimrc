@@ -67,6 +67,9 @@ nnoremap <S-Right> :vertical resize +3<CR>
 nnoremap <S-Up> :resize -3<CR>
 nnoremap <S-Down> :resize +3<CR>
 
+" allow copying from nvim to system clipboard within tmux
+vnoremap <S-y> "+y
+
 " search
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
