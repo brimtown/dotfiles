@@ -29,6 +29,7 @@ Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sjl/vitality.vim'
+Plug 'smerrill/vcl-vim-plugin'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
@@ -118,6 +119,9 @@ autocmd InsertLeave,BufLeave,FocusLost * nested silent! wall  " Save anytime we 
 
 " =======================
 " Autocomplete
+let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
+let g:LanguageClient_loggingLevel = 'INFO'
+let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
 
 let g:deoplete#enable_at_startup = 1
 
@@ -131,8 +135,6 @@ let g:LanguageClient_autoStart = 1
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Disable deoplete's preview
 
 " Close preview window after the completion is finished
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
