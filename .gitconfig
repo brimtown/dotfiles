@@ -19,3 +19,9 @@
 	autosquash = true
 [pager]
 	branch = false
+[merge]
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $BASE $MERGED -c '$wincmd w' -c 'wincmd J'
