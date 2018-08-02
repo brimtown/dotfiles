@@ -148,8 +148,8 @@ let g:javascript_plugin_flow = 1
 let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_linters = { 'javascript': ['flow', 'eslint'] }
 
-" Run prettier as an ALE fixer
-let g:ale_fixers = {'javascript': ['prettier']}
+" Setup Ale fixers
+let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
 
 "  =======================
 " Colors & themes
