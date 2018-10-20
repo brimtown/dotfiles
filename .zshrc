@@ -8,7 +8,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/timbrown/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -62,6 +62,7 @@ bindkey '^[[Z' autosuggest-execute
 # For a full list of active aliases, run `alias`.
 #
 source ~/.alias
+source ~/.credentials
 
 export PATH=$PATH:/usr/local/opt/postgresql-9.5/bin
 export EDITOR='/usr/local/bin/nvim'

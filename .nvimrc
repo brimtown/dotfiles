@@ -35,8 +35,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 
 " Initialize plugin system
@@ -71,7 +69,6 @@ nnoremap <S-Down> :resize +3<CR>
 " allow copying from nvim to system clipboard within tmux
 vnoremap <S-y> "+y
 
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> <Space> :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <C-Space> :call LanguageClient_textDocument_documentSymbol()<CR>
 
@@ -186,7 +183,6 @@ augroup MyColors
 augroup END
 
 colorscheme base16-tomorrow-night " set colorscheme
-let g:airline_theme='zenburn'
 
 " GitGutter
 if exists('&signcolumn')  " Vim 7.4.2201
