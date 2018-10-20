@@ -13,13 +13,14 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'cocopon/lightline-hybrid.vim'
 Plug 'djoshea/vim-autoread'
 Plug 'dunckr/js_alternate.vim'
-Plug 'edkolev/tmuxline.vim'
 Plug 'fatih/vim-go'
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-grepper'
 Plug 'mxw/vim-jsx'
@@ -95,6 +96,8 @@ set showmatch       " show matching braces
 set splitright
 set splitbelow
 set colorcolumn=81
+set noshowmode      " don't show default Vim --INSERT-- text
+set inccommand=nosplit       " see results of sed immediately
 
 set showcmd                  " show command in bottom bar
 set cursorline               " highlight current line
@@ -199,6 +202,15 @@ autocmd BufWritePost * GitGutter
  if !exists('g:airline_symbols')
    let g:airline_symbols = {}
  endif
+
+let g:lightline = {
+\ 'colorscheme': 'hybrid',
+\ 'active': {
+\   'left': [ [ 'mode', 'paste' ],
+\             [ 'readonly', 'filename', 'modified' ] ]
+\ },
+\ }
+
 
 " =======================
 " Symbols
