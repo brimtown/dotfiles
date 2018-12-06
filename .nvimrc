@@ -21,6 +21,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'machakann/vim-highlightedyank'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-grepper'
 Plug 'mxw/vim-jsx'
@@ -77,6 +78,12 @@ nnoremap <silent> <C-Space> :call LanguageClient_textDocument_documentSymbol()<C
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+
+" tabs
+nnoremap tn  :tabnew<CR>
+nnoremap t]  :tabnext<CR>
+nnoremap t[  :tabprev<CR>
+nnoremap td  :tabclose<CR>
 
 " =========================
 " Settings
@@ -211,6 +218,7 @@ let g:lightline = {
 \ },
 \ }
 
+let g:highlightedyank_highlight_duration = 500 " highlight yanked region
 
 " =======================
 " Symbols
