@@ -39,6 +39,12 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
 
+" Typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins', 'build': './install.sh' }
+Plug 'peitalin/vim-jsx-typescript'
+
 " Initialize plugin system
 call plug#end()
 
@@ -153,10 +159,11 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:javascript_plugin_flow = 1
 
 let g:ale_echo_msg_format = '[%linter%] %s'
-let g:ale_linters = { 'javascript': ['flow', 'eslint'] }
+let g:ale_linters = { 'javascript': ['flow', 'eslint'], 'typescript': ['tslint'] }
 
 " Setup Ale fixers
-let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
+let g:ale_fixers = {'javascript': ['prettier', 'eslint'], 'typescript': ['tslint']}
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
 "  =======================
 " Colors & themes
