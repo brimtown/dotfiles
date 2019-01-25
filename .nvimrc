@@ -221,7 +221,7 @@ let g:lightline = {
 \ 'colorscheme': 'hybrid',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
-\             [ 'readonly', 'filename', 'modified' ] ]
+\             [ 'readonly', 'relativepath', 'modified' ] ]
 \ },
 \ }
 
