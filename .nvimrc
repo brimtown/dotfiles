@@ -51,16 +51,23 @@ call plug#end()
 
 let g:deoplete#enable_at_startup = 1
 
-" function! LspMaybeHighlight(is_running) abort
-"   if a:is_running.result
-"     call LanguageClient#textDocument_documentHighlight()
-"   endif
-" endfunction
+function! LspMaybeHover(is_running) abort
+  if a:is_running.result
+    call LanguageClient_textDocument_hover()
+  endif
+endfunction
 
-" augroup lsp_aucommands
-"   au!
-"   au CursorMoved * call LanguageClient#isAlive(function('LspMaybeHighlight'))
-" augroup END
+function! LspMaybeHighlight(is_running) abort
+  if a:is_running.result
+    call LanguageClient#textDocument_documentHighlight()
+  endif
+endfunction
+
+augroup lsp_aucommands
+  au!
+  au CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
+  au CursorMoved * call LanguageClient#isAlive(function('LspMaybeHighlight'))
+augroup END
 
 " (Optionally) automatically start language servers.
 let g:LanguageClient_autoStart = 1
@@ -78,7 +85,6 @@ let g:LanguageClient_serverCommands = {
 \  'typescript': ['typescript-language-server', '--stdio'],
 \  'typescript.tsx': ['typescript-language-server', '--stdio'],
 \ }
-
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -159,6 +165,7 @@ set splitbelow
 set colorcolumn=81
 set noshowmode      " don't show default Vim --INSERT-- text
 set inccommand=nosplit       " see results of sed immediately
+set updatetime=300
 
 set showcmd                  " show command in bottom bar
 set cursorline               " highlight current line
