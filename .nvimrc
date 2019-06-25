@@ -41,17 +41,68 @@ Plug 'w0rp/ale'
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'leafgarland/typescript-vim'
-" Plug 'mhartington/nvim-typescript', { 'do': ':UpdateRemotePlugins', 'build': './install.sh' }
-Plug 'peitalin/vim-jsx-typescript'
+Plug 'plasticboy/vim-markdown'
 
 " Initialize plugin system
 call plug#end()
 
 " ========================
+" Language Server
+
+let g:deoplete#enable_at_startup = 1
+
+" function! LspMaybeHighlight(is_running) abort
+"   if a:is_running.result
+"     call LanguageClient#textDocument_documentHighlight()
+"   endif
+" endfunction
+
+" augroup lsp_aucommands
+"   au!
+"   au CursorMoved * call LanguageClient#isAlive(function('LspMaybeHighlight'))
+" augroup END
+
+" (Optionally) automatically start language servers.
+let g:LanguageClient_autoStart = 1
+" Disable text after end of line
+let g:LanguageClient_useVirtualText=0
+let g:LanguageClient_useFloatingHover=1
+" Logging
+let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
+let g:LanguageClient_loggingLevel = 'INFO'
+let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
+
+let g:LanguageClient_serverCommands = {
+\ 'javascript': ['flow-language-server', '--stdio'],
+\ 'javascript.jsx': ['flow-language-server', '--stdio'],
+\  'typescript': ['typescript-language-server', '--stdio'],
+\  'typescript.tsx': ['typescript-language-server', '--stdio'],
+\ }
+
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Close preview window after the completion is finished
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" ========================
 " Keybindings
 
 let mapleader="," "change leader
+
+command! -nargs=1 Workspace :call LanguageClient_workspace_symbol(<f-args>)
+
+" Language Client
+nnoremap <silent> <space> :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> <leader>d :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <leader>r :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> <leader>q :call LanguageClient_textDocument_documentSymbol()<CR>
+nnoremap <silent> <leader>w :Workspace 
+nnoremap <silent> <leader>Q :call LanguageClient_textDocument_references()<CR>
+" nnoremap <silent> <leader>F :call LanguageClient_textDocument_formatting()<CR>
+" nnoremap <silent> ta :call LanguageClient_textDocument_codeAction()<CR>
+
 nnoremap \ :NERDTreeToggle<CR> 
 nnoremap \| :NERDTreeFind<CR> 
 nnoremap <leader>f :GFiles --exclude-standard --cached --others<CR> 
@@ -76,9 +127,6 @@ nnoremap <S-Down> :resize +3<CR>
 
 " allow copying from nvim to system clipboard within tmux
 vnoremap <S-y> "+y
-
-nnoremap <silent> <Space> :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <C-Space> :call LanguageClient_textDocument_documentSymbol()<CR>
 
 " search
 map /  <Plug>(incsearch-forward)
@@ -120,6 +168,8 @@ set noswapfile
 set autoread
 set nohlsearch    "disable highlighting after the search
 
+set cmdheight=2
+
 " ========================
 " Autosave
 
@@ -129,30 +179,6 @@ set timeoutlen=1000 ttimeoutlen=0
 " Write all writeable buffers when changing buffers or losing focus.
 set autowriteall                " Save when doing various buffer-switching things.
 autocmd InsertLeave,BufLeave,FocusLost * nested silent! wall  " Save anytime we leave a buffer or we lose focus.
-
-" =======================
-" Autocomplete
-let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
-let g:LanguageClient_loggingLevel = 'INFO'
-let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
-
-let g:deoplete#enable_at_startup = 1
-
-let g:LanguageClient_serverCommands = {
-\ 'javascript': ['flow-language-server', '--stdio'],
-\ 'javascript.jsx': ['flow-language-server', '--stdio'],
-\  'typescript': ['typescript-language-server', '--stdio'],
-\  'typescript.tsx': ['typescript-language-server', '--stdio'],
-\ }
-
-" (Optionally) automatically start language servers.
-let g:LanguageClient_autoStart = 1
-
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Close preview window after the completion is finished
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " =======================
 " Linting
