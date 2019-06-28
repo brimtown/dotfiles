@@ -51,11 +51,11 @@ call plug#end()
 
 let g:deoplete#enable_at_startup = 1
 
-function! LspMaybeHover(is_running) abort
-  if a:is_running.result
-    call LanguageClient_textDocument_hover()
-  endif
-endfunction
+" function! LspMaybeHover(is_running) abort
+"   if a:is_running.result
+"     call LanguageClient_textDocument_hover()
+"   endif
+" endfunction
 
 function! LspMaybeHighlight(is_running) abort
   if a:is_running.result
@@ -65,7 +65,7 @@ endfunction
 
 augroup lsp_aucommands
   au!
-  au CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
+  " au CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
   au CursorMoved * call LanguageClient#isAlive(function('LspMaybeHighlight'))
 augroup END
 
