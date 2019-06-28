@@ -38,6 +38,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
+Plug 'cseelus/vim-colors-tone'
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
@@ -157,8 +158,6 @@ set expandtab       " tabs are space
 set autoindent
 set copyindent      " copy indent from the previous line
 set list            " show whitespace
-set listchars=trail:·
-set listchars=tab:\│\ ,trail:-,extends:>,precedes:<,nbsp:+
 set showmatch       " show matching braces
 set splitright
 set splitbelow
@@ -176,6 +175,16 @@ set autoread
 set nohlsearch    "disable highlighting after the search
 
 set cmdheight=2
+
+if has("multi_byte")
+  " ▒ ▩ ▨ ▢ ▞ ╳
+  set listchars=nbsp:▒,tab:▸\ ,extends:>,precedes:<,trail:·
+  let &sbr = nr2char(8618).' '
+else
+  set listchars=tab:\│\ ,trail:-,extends:>,precedes:<,nbsp:+
+  let &sbr = '+++ '
+endif
+
 
 " ========================
 " Autosave
