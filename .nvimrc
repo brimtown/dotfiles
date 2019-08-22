@@ -86,6 +86,7 @@ let g:LanguageClient_serverCommands = {
 \  'typescript': ['typescript-language-server', '--stdio'],
 \  'typescript.tsx': ['typescript-language-server', '--stdio'],
 \ }
+let g:LanguageClient_diagnosticsList = 'Location'
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
