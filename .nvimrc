@@ -66,8 +66,8 @@ endfunction
 
 augroup lsp_aucommands
   au!
-  " au CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
-  au CursorMoved * call LanguageClient#isAlive(function('LspMaybeHighlight'))
+  " au CursorHold *.ts,*.tsx call LanguageClient#isAlive(function('LspMaybeHover'))
+  au CursorMoved *.ts,*.tsx call LanguageClient#isAlive(function('LspMaybeHighlight'))
 augroup END
 
 " (Optionally) automatically start language servers.
