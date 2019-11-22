@@ -18,6 +18,7 @@ Plug 'djoshea/vim-autoread'
 Plug 'dunckr/js_alternate.vim'
 Plug 'fatih/vim-go'
 Plug 'haya14busa/incsearch.vim'
+Plug 'hashivim/vim-terraform'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
@@ -85,6 +86,7 @@ let g:LanguageClient_serverCommands = {
 \ 'javascript.jsx': ['flow-language-server', '--stdio'],
 \  'typescript': ['typescript-language-server', '--stdio'],
 \  'typescript.tsx': ['typescript-language-server', '--stdio'],
+\  'terraform': ['terraform-lsp'],
 \ }
 let g:LanguageClient_diagnosticsList = 'Location'
 
@@ -174,6 +176,7 @@ set nobackup
 set noswapfile
 set autoread
 set nohlsearch    "disable highlighting after the search
+set nofoldenable
 
 set cmdheight=2
 
@@ -207,7 +210,7 @@ let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_linters = { 'javascript': ['flow', 'eslint'], 'typescript': ['eslint'] }
 
 " Setup Ale fixers
-let g:ale_fixers = {'javascript': ['prettier', 'eslint'], 'typescript': ['prettier', 'eslint']}
+let g:ale_fixers = {'javascript': ['prettier', 'eslint'], 'typescript': ['prettier', 'eslint'], 'terraform': ['terraform']}
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
 "  =======================
