@@ -81,12 +81,17 @@ let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
 let g:LanguageClient_loggingLevel = 'INFO'
 let g:LanguageClient_serverStderr = '/tmp/LanguageServer.log'
 
+let g:LanguageClient_rootMarkers = {
+\ 'typescript': ['tsconfig.json'],
+\ 'typescript.tsx': ['tsconfig.json'],
+\ }
+
 let g:LanguageClient_serverCommands = {
-\ 'javascript': ['flow-language-server', '--stdio'],
-\ 'javascript.jsx': ['flow-language-server', '--stdio'],
-\  'typescript': ['typescript-language-server', '--stdio'],
-\  'typescript.tsx': ['typescript-language-server', '--stdio'],
-\  'terraform': ['terraform-lsp'],
+\ 'javascript': ['javascript-typescript-stdio'],
+\ 'javascript.jsx': ['javascript-typescript-stdio'],
+\ 'typescript': ['typescript-language-server', '--stdio'],
+\ 'typescript.tsx': ['typescript-language-server', '--stdio'],
+\ 'terraform': ['terraform-lsp'],
 \ }
 let g:LanguageClient_diagnosticsList = 'Location'
 
