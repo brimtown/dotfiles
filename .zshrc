@@ -63,7 +63,7 @@ source ~/.credentials
 export PATH=$PATH:/usr/local/opt/postgresql-9.5/bin
 export EDITOR='/usr/local/bin/nvim'
 export GIT_EDITOR=$EDITOR
-export VISUAL=mvim
+export VISUAL=nvim
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
