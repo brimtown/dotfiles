@@ -16,23 +16,19 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'cocopon/lightline-hybrid.vim'
 Plug 'djoshea/vim-autoread'
 Plug 'dunckr/js_alternate.vim'
-Plug 'fatih/vim-go'
 Plug 'haya14busa/incsearch.vim'
-Plug 'hashivim/vim-terraform'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'majutsushi/tagbar'
-Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mhinz/vim-grepper'
 Plug 'Olical/vim-enmasse'
-Plug 'pangloss/vim-javascript'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sjl/vitality.vim'
-Plug 'smerrill/vcl-vim-plugin'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
@@ -40,10 +36,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
 Plug 'cseelus/vim-colors-tone'
-
-" Typescript
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'plasticboy/vim-markdown'
 
 " Initialize plugin system
 call plug#end()
