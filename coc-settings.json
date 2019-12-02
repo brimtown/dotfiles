@@ -1,0 +1,15 @@
+{
+  "diagnostic.errorSign": "┃",
+  "diagnostic.warningSign": "┃",
+  "diagnostic.infoSign": "┃",
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
+  "prettier.eslintIntegration": true,
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": ["terraform"],
+      "initializationOptions": {}
+    }
+  }
+}
