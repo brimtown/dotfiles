@@ -174,6 +174,7 @@ set timeoutlen=300 ttimeoutlen=100
 
 " Write all writeable buffers when changing buffers or losing focus.
 set autowriteall                " Save when doing various buffer-switching things.
+set bufhidden=delete
 autocmd InsertLeave,BufLeave,FocusLost * nested silent! wall  " Save anytime we leave a buffer or we lose focus.
 
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
@@ -200,6 +201,7 @@ function! MyHighlights() abort
 
   highlight CocErrorSign ctermfg=9 ctermbg=15 guifg=#cc6666 guibg=NONE
   highlight CocWarningSign ctermfg=11 ctermbg=15 guifg=#f0c674 guibg=NONE
+  highlight CocInfoSign ctermfg=11 ctermbg=15 guifg=#81a2be guibg=NONE
   highlight CocHighlightText cterm=underline gui=underline
 
   highlight GitGutterAdd guibg=NONE
