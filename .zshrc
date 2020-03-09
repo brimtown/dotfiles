@@ -74,29 +74,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # Clear iTerm window title
 echo "\033]; \007"
 
-# Use rbenv
-eval "$(rbenv init -)"
-
-
-function ave () {
-  if [ -z ${AWS_PROFILE+x} ]
-    then
-      PROFILE="$1"
-      shift
-    else
-      PROFILE=${AWS_PROFILE}
-  fi
-  aws-vault exec --assume-role-ttl=1h "${PROFILE}" -- "$@"
-}
-
-function ap () {
-  if [[ $# -eq 1 ]]
-    then
-      export AWS_PROFILE=$@
-  fi
-  echo AWS_PROFILE is set to $AWS_PROFILE
-}
-
 # Use nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
