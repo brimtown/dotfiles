@@ -1,7 +1,13 @@
 {
+  "coc.preferences.diagnostic.signOffset": 9999999,
   "diagnostic.errorSign": "┃",
   "diagnostic.warningSign": "┃",
   "diagnostic.infoSign": "┃",
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
   "prettier.eslintIntegration": true,

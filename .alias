@@ -10,10 +10,12 @@ alias gap='git add -p'
 alias gcf='git commit --fixup'
 alias gcob='git checkout -b'
 alias gcom='git checkout master'
+alias gcop='git checkout prod'
 alias gpf='git push --force-with-lease'
 alias gs='git status'
 alias gsha=cherryPickHashes
 alias rebasemaster='git fetch && git rebase origin/master'
+alias rebaseprod='git fetch &&git rebase origin/prod'
 alias recentbranches='git for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short)" | head -n 10'
 
 alias rm='trash'

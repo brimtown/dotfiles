@@ -75,13 +75,13 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 echo "\033]; \007"
 
 # Use nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Automatically load NVM based on .nvmrc
-autoload -U add-zsh-hook
+# autoload -U add-zsh-hook
 load-nvmrc() {
   local node_version="$(nvm version)"
   local nvmrc_path="$(nvm_find_nvmrc)"
@@ -99,5 +99,11 @@ load-nvmrc() {
     nvm use default
   fi
 }
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
+
+eval "$(nodenv init -)"
+
+ssh-add -K
+
+export NODE_OPTIONS="--max-old-space-size=4096"

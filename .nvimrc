@@ -5,7 +5,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Make sure you use single quotes
-Plug 'airblade/vim-gitgutter'
 Plug 'ajh17/Spacegray.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
@@ -35,6 +34,80 @@ Plug 'cseelus/vim-colors-tone'
 call plug#end()
 
 let mapleader="," "change leader
+
+" ==========================
+" Language Server Protocol
+
+augroup lsp_aucommands
+  au!
+  au CursorMoved *.ts,*.tsx,*.less,*.js,*.jsx call CocActionAsync('highlight')
+augroup END
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Close preview window after the completion is finished
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Keybindings
+nmap <silent> <space> :call <SID>show_documentation()<CR>
+nmap <silent> <leader>d <Plug>(coc-definition)
+nmap <silent> <leader>t <Plug>(coc-type-definition)
+nmap <silent> <leader>i <Plug>(coc-implementation)
+nmap <silent> <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>r <Plug>(coc-references)
+nmap <leader><space> <Plug>(coc-format-selected)
+vmap <leader><space> <Plug>(coc-format-selected)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Navigate chunks of current buffer
+nmap [G <Plug>(coc-git-prevchunk)
+nmap ]G <Plug>(coc-git-nextchunk)
+" Ppen actions panel
+nmap <silent> [a :CocCommand actions.open<cr>
+
+" Extensions
+let s:coc_extensions = [
+      \  'coc-actions',
+      \  'coc-css',
+      \  'coc-eslint',
+      \  'coc-git',
+      \  'coc-highlight',
+      \  'coc-html',
+      \  'coc-jest',
+      \  'coc-json',
+      \  'coc-prettier',
+      \  'coc-tsserver',
+      \  'coc-yaml',
+      \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " ========================
 " Keybindings
@@ -73,51 +146,6 @@ nnoremap tn  :tabnew<CR>
 nnoremap t]  :tabnext<CR>
 nnoremap t[  :tabprev<CR>
 nnoremap td  :tabclose<CR>
-
-" =========================
-" Language Server
-
-augroup lsp_aucommands
-  au!
-  " au CursorHold *.ts,*.tsx call LanguageClient#isAlive(function('LspMaybeHover'))
-  au CursorMoved *.ts,*.tsx call CocActionAsync('highlight')
-augroup END
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Close preview window after the completion is finished
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Language Client
-nmap <silent> <space> :call <SID>show_documentation()<CR>
-nmap <silent> <leader>d <Plug>(coc-definition)
-nmap <silent> <leader>i <Plug>(coc-implementation)
-nmap <silent> <leader>rn <Plug>(coc-rename)
-nmap <silent> <leader>r <Plug>(coc-references)
-nmap <leader><space> <Plug>(coc-format-selected)
-vmap <leader><space> <Plug>(coc-format-selected)
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " =========================
 " Settings
@@ -161,16 +189,11 @@ else
   let &sbr = '+++ '
 endif
 
-
 " ========================
 " Autosave
 
 " decrease timeout length when hitting escape
 set timeoutlen=300 ttimeoutlen=100
-
-" ========================
-" Language Server
-
 
 " Write all writeable buffers when changing buffers or losing focus.
 set autowriteall                " Save when doing various buffer-switching things.
@@ -215,23 +238,10 @@ augroup MyColors
     autocmd ColorScheme * call MyHighlights()
 augroup END
 
+syntax enable
 colorscheme base16-tomorrow-night " set colorscheme
 
-" GitGutter
-if exists('&signcolumn')  " Vim 7.4.2201
-	set signcolumn=yes
-else
-	let g:gitgutter_sign_column_always = 1
-endif
-
-autocmd BufWritePost * GitGutter
-
-" air-line
- let g:airline_powerline_fonts = 1
-
- if !exists('g:airline_symbols')
-   let g:airline_symbols = {}
- endif
+set signcolumn=auto:2
 
 let g:lightline = {
 \ 'colorscheme': 'hybrid',
