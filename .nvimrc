@@ -119,6 +119,16 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+" let g:coc_global_extensions += ['coc-json']
+
 " =========================
 " Settings
 
