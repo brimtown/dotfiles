@@ -28,7 +28,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'cseelus/vim-colors-tone'
+Plug 'vimwiki/vimwiki'
 
 " Initialize plugin system
 call plug#end()
@@ -41,6 +41,7 @@ let mapleader="," "change leader
 augroup lsp_aucommands
   au!
   au CursorMoved *.ts,*.tsx,*.less,*.js,*.jsx call CocActionAsync('highlight')
+  au CursorHold *.py call CocActionAsync('highlight')
 augroup END
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -116,16 +117,14 @@ nnoremap \ :NERDTreeToggle<CR>
 nnoremap \| :NERDTreeFind<CR> 
 nnoremap <leader>f :GFiles --exclude-standard --cached --others<CR> 
 nnoremap <leader>a :Grepper<CR>
+nnoremap <C-P> :Rg!<CR>
 nnoremap <leader>A :call js_alternate#run()<CR>
 nnoremap <leader>s :%s/
 nnoremap <leader>g :Gblame<CR>
 nnoremap <leader>G :Gstatus<CR>
 
-" navigate splits without C-W
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap } <C-d>
+nnoremap { <C-u>
 
 " resize split with Shift+Arrow Keys
 nnoremap <S-Left> :vertical resize -3<CR>
@@ -177,8 +176,11 @@ set noswapfile
 set autoread
 set nohlsearch    "disable highlighting after the search
 set nofoldenable
+set mouse=a       "allow scrolling with mouse in terminal
+set scroll=8
+set re=0          "recommended by yats.vim
 
-set cmdheight=2
+set cmdheight=1
 
 if has("multi_byte")
   " ▒ ▩ ▨ ▢ ▞ ╳
@@ -214,17 +216,18 @@ if has("termguicolors")     " set true colors
     set termguicolors
 endif
 
-set fillchars="" "remove the pipe operator from splits
+set fillchars+=vert:│
 
 function! MyHighlights() abort
   highlight SignColumn guibg=NONE
 
-  highlight LineNr guibg=NONE guifg=#27292D
-  highlight CursorLineNr guibg=NONE
+  highlight LineNr guibg=NONE guifg=#4f5b66
+  highlight CursorLineNr guibg=NONE guifg=#C0C5CE
+  hi VertSplit ctermbg=NONE guibg=NONE
 
-  highlight CocErrorSign ctermfg=9 ctermbg=15 guifg=#cc6666 guibg=NONE
-  highlight CocWarningSign ctermfg=11 ctermbg=15 guifg=#f0c674 guibg=NONE
-  highlight CocInfoSign ctermfg=11 ctermbg=15 guifg=#81a2be guibg=NONE
+  highlight CocErrorSign ctermfg=9 ctermbg=15 guifg=#EC5f67 guibg=NONE
+  highlight CocWarningSign ctermfg=11 ctermbg=15 guifg=#FAC863 guibg=NONE
+  highlight CocInfoSign ctermfg=11 ctermbg=15 guifg=#6699CC guibg=NONE
   highlight CocHighlightText cterm=underline gui=underline
 
   highlight GitGutterAdd guibg=NONE
@@ -239,19 +242,42 @@ augroup MyColors
 augroup END
 
 syntax enable
-colorscheme base16-tomorrow-night " set colorscheme
+colorscheme base16-oceanic-dark " set colorscheme
 
 set signcolumn=auto:2
 
 let g:lightline = {
-\ 'colorscheme': 'hybrid',
+\ 'colorscheme': 'one',
 \ 'active': {
 \   'left': [ [ 'mode', 'paste' ],
 \             [ 'readonly', 'relativepath', 'modified' ] ]
 \ },
 \ }
 
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'       ],
+  \ 'bg':      ['bg', 'Normal'       ],
+  \ 'hl':      ['fg', 'Comment'      ],
+  \ 'fg+':     ['fg', 'CursorColumn' , 'Normal', 'CursorLine'],
+  \ 'bg+':     ['bg', 'CursorColumn', 'CursorLine' ],
+  \ 'hl+':     ['fg', 'Statement'    ],
+  \ 'info':    ['fg', 'PreProc'      ],
+  \ 'prompt':  ['fg', 'Conditional'  ],
+  \ 'pointer': ['fg', 'Exception'    ],
+  \ 'marker':  ['fg', 'Keyword'      ],
+  \ 'spinner': ['fg', 'Label'        ],
+  \ 'header':  ['fg', 'Comment'      ] }
+
+let g:NERDTreeHighlightCursorline = 0
 let g:highlightedyank_highlight_duration = 500 " highlight yanked region
+
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 " =======================
 " Symbols

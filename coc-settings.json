@@ -1,5 +1,6 @@
 {
   "coc.preferences.diagnostic.signOffset": 9999999,
+  "tsserver.log": "normal",
   "diagnostic.errorSign": "┃",
   "diagnostic.warningSign": "┃",
   "diagnostic.infoSign": "┃",
