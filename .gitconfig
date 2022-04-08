@@ -12,7 +12,6 @@
 	interactive = auto
 	ui = true
 	pager = true
-[core]
 [rerere]
 	enabled = true
 [rebase]
@@ -25,3 +24,5 @@
   prompt = true
 [mergetool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $BASE $MERGED -c '$wincmd w' -c 'wincmd J'
+[core]
+	hooksPath = /usr/local/dd/global_hooks

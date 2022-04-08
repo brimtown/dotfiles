@@ -4766,7 +4766,7 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>2320 1081 799 448 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>1756 571 620 392 1440 355 2560 1417 </string>
+	<string>2410 1123 620 392 1440 355 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>1440 355 2560 1417 1440 355 2560 1417 </string>
 	<key>New Bookmarks</key>
@@ -5878,7 +5878,7 @@
 			<key>Use Underline Color</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1.0600000000000001</real>
+			<real>1.05</real>
 			<key>Visual Bell</key>
 			<false/>
 			<key>Window Type</key>
@@ -5891,6 +5891,7 @@
 	<array>
 		<string>3.3.9</string>
 		<string>3.3.11</string>
+		<string>3.3.12</string>
 	</array>
 	<key>NoSyncBFPFavorites</key>
 	<array>
@@ -5908,12 +5909,12 @@
 		<key>screenFrame</key>
 		<string>{{1440, 355}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{2066, 1026}</string>
+		<string>{2299, 1048}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>2DE86E29-BE5F-4AFD-94E8-1CF3C6E809FD</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>89</integer>
+	<integer>108</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -6736,13 +6737,13 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-06-23T13:03:38Z</date>
+	<date>2020-11-16T17:09:38Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
-	<integer>3583931681</integer>
+	<integer>2918293267</integer>
 	<key>SUUpdateRelaunchingMarker</key>
-	<false/>
+	<true/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
@@ -8077,7 +8078,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.11</string>
+	<string>3.3.12</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

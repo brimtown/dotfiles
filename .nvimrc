@@ -71,19 +71,23 @@ endfunction
 " Keybindings
 nmap <silent> <space> :call <SID>show_documentation()<CR>
 nmap <silent> <leader>d <Plug>(coc-definition)
+nmap <silent> <leader>q <Plug>(coc-list-location)
 nmap <silent> <leader>t <Plug>(coc-type-definition)
 nmap <silent> <leader>i <Plug>(coc-implementation)
 nmap <silent> <leader>rn <Plug>(coc-rename)
 nmap <silent> <leader>r <Plug>(coc-references)
 nmap <leader><space> <Plug>(coc-format-selected)
 vmap <leader><space> <Plug>(coc-format-selected)
+au FileType typescript.tsx,typescript,javascript,json nmap <leader><space> :CocCommand eslint.executeAutofix<CR>
+au FileType typescript.tsx,typescript,javascript,json vmap <leader><space> :CocCommand eslint.executeAutofix<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Navigate chunks of current buffer
 nmap [G <Plug>(coc-git-prevchunk)
 nmap ]G <Plug>(coc-git-nextchunk)
 " Ppen actions panel
-nmap <silent> [a :CocCommand actions.open<cr>
+" nmap <silent> [a :CocCommand actions.open<cr>
+nmap [a  <Plug>(coc-codeaction-selected)w
 
 " Extensions
 let s:coc_extensions = [
@@ -112,7 +116,7 @@ nnoremap <leader>a :Grepper<CR>
 nnoremap <C-P> :Rg!<CR>
 nnoremap <leader>A :call js_alternate#run()<CR>
 nnoremap <leader>s :%s/
-nnoremap <leader>g :Gblame<CR>
+nnoremap <leader>g :Git blame<CR>
 nnoremap <leader>G :Gstatus<CR>
 
 nnoremap } <C-d>

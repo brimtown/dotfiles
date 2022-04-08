@@ -2,6 +2,7 @@
 export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
+export APPLE_SSH_ADD_BEHAVIOR=macos
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -106,7 +107,7 @@ eval "$(nodenv init -)"
 
 ssh-add -K
 
-export NODE_OPTIONS="--max-old-space-size=4096"
+export NODE_OPTIONS="--max-old-space-size=12288"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
