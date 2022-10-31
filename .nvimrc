@@ -2,7 +2,7 @@
 " Plugins
 
 " Specify a directory for plugins
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.local/share/nvim/site/plugged')
 
 " Make sure you use single quotes
 Plug 'ajh17/Spacegray.vim'
@@ -44,13 +44,15 @@ augroup lsp_aucommands
   au CursorHold *.py call CocActionAsync('highlight')
 augroup END
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
+" remap for complete to use tab and <cr>
+inoremap <silent><expr> <C-j>
+    \ coc#pum#visible() ? coc#pum#next(1):
+    \ <SID>check_back_space() ? "\<C-j>" :
+    \ coc#refresh()
+inoremap <expr><C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <c-space> coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -225,6 +227,10 @@ function! MyHighlights() abort
   highlight CocWarningSign ctermfg=11 ctermbg=15 guifg=#FAC863 guibg=NONE
   highlight CocInfoSign ctermfg=11 ctermbg=15 guifg=#6699CC guibg=NONE
   highlight CocHighlightText cterm=underline gui=underline
+  highlight CocDiagnosticsError ctermfg=9 ctermbg=15 guifg=#EC5f67 guibg=NONE
+  highlight CocErrorFloat ctermfg=9 ctermbg=15 guifg=#EC5f67 guibg=NONE
+  highlight CocWarningFloat ctermfg=11 ctermbg=15 guifg=#FAC863 guibg=NONE
+  highlight CocInfoFloat ctermfg=11 ctermbg=15 guifg=#6699CC guibg=NONE
 
   highlight GitGutterAdd guibg=NONE
   highlight GitGutterChange guibg=NONE

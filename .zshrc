@@ -60,6 +60,7 @@ bindkey '^[[Z' autosuggest-execute
 #
 source ~/.alias
 source ~/.credentials
+source ~/.dd-zshrc
 
 export PATH=$PATH:/usr/local/opt/postgresql-9.5/bin
 export EDITOR='/usr/local/bin/nvim'

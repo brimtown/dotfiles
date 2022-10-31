@@ -1,0 +1,6 @@
+# Use Git's default (reverse chronological) order, never automatically
+# use topo-order for the commit graph
+set commit-order = default
+
+# Limit number of commits loaded by default
+set main-options = -n 500
