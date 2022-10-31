@@ -1,5 +1,4 @@
 {
-  "coc.preferences.diagnostic.signOffset": 9999999,
   "tsserver.log": "normal",
   "diagnostic.errorSign": "┃",
   "diagnostic.warningSign": "┃",
@@ -12,10 +11,6 @@
   "eslint.autoFixOnSave": true,
   "eslint.format.enable": true,
   "tsserver.maxTsServerMemory": 16384,
-  "prettier.eslintIntegration": true,
-  "python.formatting.provider": "black",
-  "python.formatting.blackPath": "/Users/tim.brown/.pyenv/versions/3.8.3/bin/black",
-  "python.jediEnabled": false,
   "languageserver": {
     "terraform": {
       "command": "terraform-lsp",
@@ -24,3 +19,4 @@
     }
   }
 }
+
