@@ -1,5 +1,6 @@
 {
   "tsserver.log": "normal",
+  "colors.enable": true,
   "diagnostic.errorSign": "┃",
   "diagnostic.warningSign": "┃",
   "diagnostic.infoSign": "┃",

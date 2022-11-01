@@ -63,7 +63,7 @@ source ~/.credentials
 source ~/.dd-zshrc
 
 export PATH=$PATH:/usr/local/opt/postgresql-9.5/bin
-export EDITOR='/usr/local/bin/nvim'
+export EDITOR=nvim
 export GIT_EDITOR=$EDITOR
 export VISUAL=nvim
 
