@@ -9,6 +9,7 @@
 * tmux
 * zsh
 * iTerm2
+* [Rectangle](https://rectangleapp.com/)
 
 # Setup (currently manual)
 
