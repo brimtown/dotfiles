@@ -11,6 +11,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'cocopon/lightline-hybrid.vim'
 Plug 'djoshea/vim-autoread'
 Plug 'dunckr/js_alternate.vim'
+" Plug 'github/copilot.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -288,3 +289,9 @@ endfunc
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
+
+augroup VimwikiKeyMap
+    autocmd!
+    autocmd FileType vimwiki inoremap <silent><buffer> <CR>
+                \ <C-]><Esc>:VimwikiReturn 1 5<CR>
+augroup END

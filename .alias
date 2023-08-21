@@ -4,7 +4,7 @@ cherryPickHashes() {
 }
 # Git specific
 alias gam='git commit --amend --no-edit'
-alias gb='git branch'
+alias gb="git branch -v --sort='-authordate:iso8601' --format='%(align:width=40)%(refname:short)%(end)(%(authordate:relative))'"
 alias gbd='git branch -D'
 alias gap='git add -p'
 alias gcf='git commit --fixup'

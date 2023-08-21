@@ -108,7 +108,7 @@ eval "$(nodenv init -)"
 
 ssh-add -K
 
-export NODE_OPTIONS="--max-old-space-size=12288"
+export NODE_OPTIONS="--max-old-space-size=24576"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi

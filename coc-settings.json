@@ -11,7 +11,22 @@
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "eslint.autoFixOnSave": true,
   "eslint.format.enable": true,
-  "tsserver.maxTsServerMemory": 16384,
+  "typescript.updateImportsOnFileMove.enable": "always",
+  "javascript.updateImportsOnFileMove.enable": "always",
+  "tsserver.maxTsServerMemory": 24576,
+    "eslint.filetypes": [
+      "javascript",
+      "javascript.jsx",
+      "javascriptreact",
+      "typescript",
+      "typescript.tsx",
+      "typescriptreact"
+  ],
+  "eslint.nodePath": ".yarn/sdks",
+  "eslint.packageManager": "yarn",
+  "prettier.prettierPath": ".yarn/sdks/prettier",
+  "tsserver.tsdk": ".yarn/sdks/typescript/lib",
+  "workspace.workspaceFolderCheckCwd": false,
   "languageserver": {
     "terraform": {
       "command": "terraform-lsp",

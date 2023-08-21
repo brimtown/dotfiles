@@ -26,3 +26,11 @@
   cmd = nvim -d $LOCAL $REMOTE $BASE $MERGED -c '$wincmd w' -c 'wincmd J'
 [core]
 	hooksPath = /usr/local/dd/global_hooks
+
+[remote "origin"]
+  tagOpt = --no-tags
+	prune = true
+
+[branch "preprod"]
+	remote = origin
+	merge = refs/heads/preprod
