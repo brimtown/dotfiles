@@ -1,8 +1,8 @@
 ![](./Editor.png)
 
 # Visual
-* Theme: Tomorrow Night (modified)
-* Font: Inconsolata-g
+* Theme: Base 16 Oceanic Dark (modified)
+* Font: Fira Code
 
 # Tools
 * nvim
