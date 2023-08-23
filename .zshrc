@@ -106,7 +106,7 @@ load-nvmrc() {
 
 eval "$(nodenv init -)"
 
-ssh-add -K
+ssh-add -K &> /dev/null
 
 export NODE_OPTIONS="--max-old-space-size=24576"
 if command -v pyenv 1>/dev/null 2>&1; then
