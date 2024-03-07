@@ -11,7 +11,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'cocopon/lightline-hybrid.vim'
 Plug 'djoshea/vim-autoread'
 Plug 'dunckr/js_alternate.vim'
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -20,7 +20,6 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'mhinz/vim-grepper'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Olical/vim-enmasse'
-Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'sjl/vitality.vim'
@@ -70,6 +69,9 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+let g:grepper               = {}
+let g:grepper.tools         = ['git', 'rg']
 
 " Keybindings
 nmap <silent> <space> :call <SID>show_documentation()<CR>

@@ -1,3 +1,6 @@
+# Uncomment below and run `zprof` to profile
+zmodload zsh/zprof
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -17,6 +20,11 @@ DISABLE_AUTO_TITLE="true"
 
 # Explicitly set the buffer size for performance
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
+ZSH_AUTOSUGGEST_MANUAL_REBIND="true"
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(git gitfast tmux zsh-autosuggestions history-substring-search zsh-syntax-highlighting wd)
 

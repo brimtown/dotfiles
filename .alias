@@ -13,6 +13,8 @@ alias gcom='git checkout master'
 alias gcop='git checkout preprod'
 alias gpf='git push --force-with-lease'
 alias gs='git status'
+alias gup='git pull --rebase'
+alias up=gup
 alias gsha=cherryPickHashes
 alias rebasemaster='git fetch && git rebase origin/master'
 alias rebaseprod='git fetch &&git rebase origin/preprod'
@@ -20,5 +22,6 @@ alias rebasepreprod=rebaseprod
 alias recentbranches='git for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short)" | head -n 10'
 
 alias rm='trash'
-alias ls='exa -F'
+alias ls='eza -F'
 alias vim='nvim'
+alias mux='tmux'
