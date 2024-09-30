@@ -11,6 +11,7 @@
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "eslint.autoFixOnSave": true,
   "eslint.format.enable": true,
+  "eslint.experimental.useFlatConfig": true,
   "typescript.updateImportsOnFileMove.enable": "always",
   "javascript.updateImportsOnFileMove.enable": "always",
   "javascript.preferences.importModuleSpecifier": "non-relative",
