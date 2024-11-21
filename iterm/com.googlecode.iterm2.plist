@@ -5020,6 +5020,8 @@
 			</dict>
 			<key>Guid</key>
 			<string>53FAE094-08B3-417A-9D19-9B357403A79B</string>
+			<key>Hide After Opening</key>
+			<false/>
 			<key>Horizontal Spacing</key>
 			<real>0.87</real>
 			<key>Idle Code</key>
@@ -5351,7 +5353,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCodeRoman-Regular 14</string>
+			<string>FiraCode-Regular 14</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -5804,6 +5806,8 @@
 			<true/>
 			<key>Use Cursor Guide</key>
 			<false/>
+			<key>Use Custom Tab Title</key>
+			<false/>
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
@@ -5881,6 +5885,8 @@
 	<true/>
 	<key>RunJobsInServers</key>
 	<false/>
+	<key>SeparateWindowTitlePerTab</key>
+	<true/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>

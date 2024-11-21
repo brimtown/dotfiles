@@ -42,6 +42,7 @@ augroup lsp_aucommands
   au!
   au CursorMoved *.ts,*.tsx,*.less,*.js,*.jsx call CocActionAsync('highlight')
   au CursorHold *.py call CocActionAsync('highlight')
+  autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup END
 
 inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -85,6 +86,8 @@ nmap <leader><space> <Plug>(coc-format-selected)
 vmap <leader><space> <Plug>(coc-format-selected)
 au FileType typescript.tsx,typescript,javascript,json nmap <leader><space> :CocCommand eslint.executeAutofix<CR>
 au FileType typescript.tsx,typescript,javascript,json vmap <leader><space> :CocCommand eslint.executeAutofix<CR>
+au FileType py nmap <leader><space> :CocCommand ruff.executeAutofix<CR>
+au FileType py vmap <leader><space> :CocCommand ruff.executeAutofix<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Navigate chunks of current buffer

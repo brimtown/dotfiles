@@ -41,6 +41,8 @@
 * `ln -s ~/dotfiles/themes/vim/colors/base16-oceanic-dark.vim ~/.config/nvim/colors/base16-oceanic-dark.vim`
 * `ln -s ~/dotfiles/coc-settings.json ~/.config/nvim/coc-settings.json`
 * `ln -s ~/dotfiles/bat/config ~/.config/bat/config`
+* `ln -s ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json`
+* `ln -s ~/dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
 
 ## Vim-specific
 * Install [vim-plug](https://github.com/junegunn/vim-plug#installation)

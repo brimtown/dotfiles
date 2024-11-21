@@ -1,0 +1,124 @@
+{
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+              "<leader>",
+              "d"
+            ],
+            "commands": [
+              "editor.action.revealDefinition",
+            ]
+          }, 
+        {
+            "before": [
+              "<leader>",
+              "f"
+            ],
+            "commands": [
+              "workbench.action.quickOpen",
+            ]
+          }, 
+        {
+            "before": [
+              "<leader>",
+              "r"
+            ],
+            "commands": [
+              "editor.action.goToReferences",
+            ]
+          }, 
+        {
+            "before": [
+              "<leader>",
+              "t"
+            ],
+            "commands": [
+              "editor.action.goToTypeDefinition",
+            ]
+          }, 
+        {
+            "before": [
+              "<leader>",
+              "a"
+            ],
+            "commands": [
+              "workbench.action.findInFiles",
+            ]
+          }, 
+        {
+            "before": [
+              "[",
+              "g"
+            ],
+            "commands": [
+              "editor.action.marker.previous",
+            ]
+          }, 
+        {
+            "before": [
+              "]",
+              "g"
+            ],
+            "commands": [
+              "editor.action.marker.next",
+            ]
+          }, 
+        {
+            "before": [
+              "[",
+              "G"
+            ],
+            "commands": [
+              "workbench.action.editor.previousChange",
+            ]
+          }, 
+        {
+            "before": [
+              "]",
+              "G"
+            ],
+            "commands": [
+              "workbench.action.editor.nextChange",
+            ]
+          }, 
+          {
+            "before": [":", "w"],
+            "commands": [
+                "workbench.action.files.save",
+            ]
+        },
+    ],
+    "vim.leader": ",",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false
+    },
+    "files.watcherExclude": {
+      "**/.bloop": true,
+      "**/.metals": true,
+      "**/.ammonite": true
+    },
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "datadog.staticAnalysis.notification.suppressOnboarding": true,
+    "explorer.confirmDragAndDrop": false,
+    "workbench.colorCustomizations": {
+      "list.inactiveSelectionBackground": "#1D2433",
+      "sideBar.background": "#080C14",
+      "editor.background": "#080C14",
+      "sideBarSectionHeader.background": "#1D2433",
+      "activityBar.border": "#65737E",
+      "statusBar.background": "#1D2433",
+      "badge.background": "#81CA91"
+  }
+}

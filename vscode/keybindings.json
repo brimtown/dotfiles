@@ -1,0 +1,39 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "space",
+        "command": "editor.action.showHover",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "cmd+k cmd+i",
+        "command": "-editor.action.showHover",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft"
+      },
+      {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight"
+      },
+      {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp"
+      },
+      {
+        "key": "ctrl+j",
+        "command": "workbench.action.navigateDown"
+      },
+      {
+        "key": "ctrl+k",
+        "command": "workbench.files.action.focusOpenEditorsView",
+        "when": "sideBarFocus && explorerViewletVisible"
+      },
+      {
+        "key": "ctrl+j",
+        "command": "workbench.files.action.focusFilesExplorer",
+        "when": "sideBarFocus && explorerViewletVisible && !filesExplorerFocus"
+      }
+]
