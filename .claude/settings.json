@@ -3,6 +3,14 @@
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true
   },
+  "permissions": {
+    "allow": [
+      "Bash(gh pr diff:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh pr view:*)"
+    ]
+  },
   "hooks": {
     "UserPromptSubmit": [
       {
