@@ -6,6 +6,7 @@ export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.bun/bin:$PATH"
 export APPLE_SSH_ADD_BEHAVIOR=macos
 
 # Path to your oh-my-zsh installation.

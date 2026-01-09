@@ -8,6 +8,8 @@
 input=$(cat)
 # Use TMUX_PANE to get the window where Claude is running, not the focused window
 WINDOW=$(tmux display-message -p -t "$TMUX_PANE" '#I')
+# Get currently focused window to avoid notifying if already there
+FOCUSED=$(tmux display-message -p '#I')
 
 # Parse event type from JSON (simple grep, no jq needed)
 if echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"UserPromptSubmit"'; then
@@ -21,14 +23,14 @@ elif echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"Notific
   tmux set-window-option -t ":$WINDOW" window-status-style "fg=#EC5f67"
   tmux set-window-option -t ":$WINDOW" window-status-current-style "fg=#EC5f67,bg=#4F5B66"
   tmux set-window-option -t ":$WINDOW" @claude-state "waiting"
-  tmux display-message -d 2000 "Claude needs input in window ($WINDOW)"
+  [ "$WINDOW" != "$FOCUSED" ] && tmux display-message -d 2500 "Claude needs input in window ($WINDOW)"
 
 elif echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"Stop"'; then
   # Red - Claude finished, waiting for you (like unread notification)
   tmux set-window-option -t ":$WINDOW" window-status-style "fg=#EC5f67"
   tmux set-window-option -t ":$WINDOW" window-status-current-style "fg=#EC5f67,bg=#4F5B66"
   tmux set-window-option -t ":$WINDOW" @claude-state "waiting"
-  tmux display-message -d 2000 "Claude needs input in window ($WINDOW)"
+  [ "$WINDOW" != "$FOCUSED" ] && tmux display-message -d 2500 "Claude needs input in window ($WINDOW)"
 
 elif echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"SessionEnd"'; then
   # White - Session ended (restore defaults)
