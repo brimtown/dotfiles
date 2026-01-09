@@ -1,6 +1,7 @@
 #!/bin/bash
 # Claude Code tmux state hook
 # Changes tmux window color based on Claude state
+# Uses @claude-state window option to track state for focus-dismiss
 
 [ -z "$TMUX" ] && exit 0  # Not in tmux, nothing to do
 
@@ -13,17 +14,27 @@ if echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"UserPromp
   # Blue - Claude is running
   tmux set-window-option -t ":$WINDOW" window-status-style "fg=#6699cc"
   tmux set-window-option -t ":$WINDOW" window-status-current-style "fg=#6699cc,bg=#4F5B66"
+  tmux set-window-option -t ":$WINDOW" @claude-state "running"
 
 elif echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"Notification"'; then
-  # Red - Claude needs input
+  # Red - Claude needs permission
   tmux set-window-option -t ":$WINDOW" window-status-style "fg=#EC5f67"
   tmux set-window-option -t ":$WINDOW" window-status-current-style "fg=#EC5f67,bg=#4F5B66"
+  tmux set-window-option -t ":$WINDOW" @claude-state "waiting"
   tmux display-message -d 2000 "Claude needs input in window ($WINDOW)"
 
 elif echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"Stop"'; then
-  # White - Claude finished (restore defaults)
+  # Red - Claude finished, waiting for you (like unread notification)
+  tmux set-window-option -t ":$WINDOW" window-status-style "fg=#EC5f67"
+  tmux set-window-option -t ":$WINDOW" window-status-current-style "fg=#EC5f67,bg=#4F5B66"
+  tmux set-window-option -t ":$WINDOW" @claude-state "waiting"
+  tmux display-message -d 2000 "Claude needs input in window ($WINDOW)"
+
+elif echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"SessionEnd"'; then
+  # White - Session ended (restore defaults)
   tmux set-window-option -t ":$WINDOW" window-status-style "fg=#cdd3de"
   tmux set-window-option -t ":$WINDOW" window-status-current-style "fg=#d8dee9,bg=#4F5B66"
+  tmux set-window-option -t ":$WINDOW" @claude-state "idle"
 fi
 
 exit 0

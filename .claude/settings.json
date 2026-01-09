@@ -11,11 +11,16 @@
     ],
     "Notification": [
       {
-        "matcher": "permission_prompt|idle_prompt",
+        "matcher": "permission_prompt",
         "hooks": [{ "type": "command", "command": "~/.claude/hooks/tmux-state.sh" }]
       }
     ],
     "Stop": [
+      {
+        "hooks": [{ "type": "command", "command": "~/.claude/hooks/tmux-state.sh" }]
+      }
+    ],
+    "SessionEnd": [
       {
         "hooks": [{ "type": "command", "command": "~/.claude/hooks/tmux-state.sh" }]
       }
