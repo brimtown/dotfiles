@@ -17,6 +17,11 @@
         "hooks": [{ "type": "command", "command": "~/.claude/hooks/tmux-state.sh" }]
       }
     ],
+    "PreToolUse": [
+      {
+        "hooks": [{ "type": "command", "command": "~/.claude/hooks/tmux-state.sh" }]
+      }
+    ],
     "Notification": [
       {
         "matcher": "permission_prompt",
