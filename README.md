@@ -44,6 +44,10 @@
 * `ln -s ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json`
 * `ln -s ~/dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
 
+* `mkdir -p ~/.claude`
+* `ln -s ~/dotfiles/.claude/settings.json ~/.claude/settings.json`
+* `ln -s ~/dotfiles/.claude/hooks ~/.claude/hooks`
+
 ## Vim-specific
 * Install [vim-plug](https://github.com/junegunn/vim-plug#installation)
 * Run `:PlugInstall`
