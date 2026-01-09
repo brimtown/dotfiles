@@ -25,13 +25,22 @@ Plug 'sheerun/vim-polyglot'
 Plug 'sjl/vitality.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vimwiki/vimwiki'
 
 " Initialize plugin system
 call plug#end()
+
+" ====================
+" Vimwiki Configuration
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'default', 
+                      \ 'ext': '.wiki'}]
+let g:vimwiki_global_ext = 0
 
 let mapleader="," "change leader
 
@@ -126,6 +135,7 @@ nnoremap <leader>A :call js_alternate#run()<CR>
 nnoremap <leader>s :%s/
 nnoremap <leader>g :Git blame<CR>
 nnoremap <leader>G :Gstatus<CR>
+nnoremap <leader>c :let @+ = expand('%')<CR>
 
 nnoremap } <C-d>
 nnoremap { <C-u>
@@ -157,9 +167,9 @@ set number          "display linenumbers
 set hidden
 set nowritebackup
 set shortmess+=c
-set tabstop=2       " number of visual spaces per TAB
+set tabstop=4       " number of visual spaces per TAB
 set softtabstop=2   " number of spaces in tab when editing
-set shiftwidth=2    " number of spaces to use for autoindent
+set shiftwidth=4    " number of spaces to use for autoindent
 set expandtab       " tabs are space
 set autoindent
 set copyindent      " copy indent from the previous line
@@ -188,7 +198,7 @@ set cmdheight=1
 
 if has("multi_byte")
   " ▒ ▩ ▨ ▢ ▞ ╳
-  set listchars=nbsp:▒,tab:▸\ ,extends:>,precedes:<,trail:·
+  set listchars=nbsp:▒,tab:⇥\ ,extends:>,precedes:<,trail:·
   let &sbr = nr2char(8618).' '
 else
   set listchars=tab:\│\ ,trail:-,extends:>,precedes:<,nbsp:+
