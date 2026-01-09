@@ -1,5 +1,5 @@
 # Uncomment below and run `zprof` to profile
-zmodload zsh/zprof
+# zmodload zsh/zprof
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
@@ -28,7 +28,7 @@ ZSH_AUTOSUGGEST_MANUAL_REBIND="true"
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git gitfast tmux zsh-autosuggestions history-substring-search zsh-syntax-highlighting wd)
+plugins=(git gitfast zsh-autosuggestions history-substring-search zsh-syntax-highlighting wd)
 
 source $ZSH/oh-my-zsh.sh
 

@@ -1,124 +1,111 @@
 {
-    "[python]": {
-        "editor.formatOnType": true
+  "[python]": {
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "d"],
+      "commands": ["editor.action.revealDefinition"]
     },
-    "vim.easymotion": true,
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.useCtrlKeys": true,
-    "vim.hlsearch": true,
-    "vim.insertModeKeyBindings": [],
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-              "<leader>",
-              "d"
-            ],
-            "commands": [
-              "editor.action.revealDefinition",
-            ]
-          }, 
-        {
-            "before": [
-              "<leader>",
-              "f"
-            ],
-            "commands": [
-              "workbench.action.quickOpen",
-            ]
-          }, 
-        {
-            "before": [
-              "<leader>",
-              "r"
-            ],
-            "commands": [
-              "editor.action.goToReferences",
-            ]
-          }, 
-        {
-            "before": [
-              "<leader>",
-              "t"
-            ],
-            "commands": [
-              "editor.action.goToTypeDefinition",
-            ]
-          }, 
-        {
-            "before": [
-              "<leader>",
-              "a"
-            ],
-            "commands": [
-              "workbench.action.findInFiles",
-            ]
-          }, 
-        {
-            "before": [
-              "[",
-              "g"
-            ],
-            "commands": [
-              "editor.action.marker.previous",
-            ]
-          }, 
-        {
-            "before": [
-              "]",
-              "g"
-            ],
-            "commands": [
-              "editor.action.marker.next",
-            ]
-          }, 
-        {
-            "before": [
-              "[",
-              "G"
-            ],
-            "commands": [
-              "workbench.action.editor.previousChange",
-            ]
-          }, 
-        {
-            "before": [
-              "]",
-              "G"
-            ],
-            "commands": [
-              "workbench.action.editor.nextChange",
-            ]
-          }, 
-          {
-            "before": [":", "w"],
-            "commands": [
-                "workbench.action.files.save",
-            ]
-        },
-    ],
-    "vim.leader": ",",
-    "vim.handleKeys": {
-        "<C-a>": false,
-        "<C-f>": false
+    {
+      "before": ["<leader>", "space"],
+      "commands": ["editor.action.format"]
     },
-    "files.watcherExclude": {
-      "**/.bloop": true,
-      "**/.metals": true,
-      "**/.ammonite": true
+    {
+      "before": ["space"],
+      "commands": ["editor.action.showHover"]
     },
-    "workbench.colorTheme": "One Dark Pro Darker",
-    "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 14,
-    "datadog.staticAnalysis.notification.suppressOnboarding": true,
-    "explorer.confirmDragAndDrop": false,
-    "workbench.colorCustomizations": {
-      "list.inactiveSelectionBackground": "#1D2433",
-      "sideBar.background": "#080C14",
-      "editor.background": "#080C14",
-      "sideBarSectionHeader.background": "#1D2433",
-      "activityBar.border": "#65737E",
-      "statusBar.background": "#1D2433",
-      "badge.background": "#81CA91"
-  }
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["<leader>", "t"],
+      "commands": ["editor.action.goToTypeDefinition"]
+    },
+    {
+      "before": ["<leader>", "a"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["[", "g"],
+      "commands": ["editor.action.marker.previous"]
+    },
+    {
+      "before": ["]", "g"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "G"],
+      "commands": ["workbench.action.editor.previousChange"]
+    },
+    {
+      "before": ["]", "G"],
+      "commands": ["workbench.action.editor.nextChange"]
+    },
+    {
+      "before": [":", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<C-w>"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    }
+  ],
+  "vim.leader": ",",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true,
+    "**/.ammonite": true
+  },
+  "workbench.colorTheme": "Deep Ocean - Blue",
+  "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "datadog.staticAnalysis.notification.suppressOnboarding": true,
+  "explorer.confirmDragAndDrop": false,
+  "workbench.colorCustomizations": {
+    "list.inactiveSelectionBackground": "#1D2433",
+    "sideBar.background": "#080C14",
+    "editor.background": "#080C14",
+    "editor.lineHighlightBackground": "#1b2434",
+    "editor.selectionBackground": "#1b2434",
+    "editor.selectionHighlightBackground": "#FFFFFF00",
+    "sideBarSectionHeader.background": "#1D2433",
+    "activityBar.border": "#65737E",
+    "statusBar.background": "#1D2433",
+    "badge.background": "#81CA91",
+    "panel.background": "#1D2433",
+    "terminal.background": "#080C14"
+  },
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "files.autoSave": "afterDelay",
+  "editor.fontWeight": "100",
+  "metals.javaHome": "/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "ruff.organizeImports": true,
+  "ruff.fixAll": true,
+  "ruff.fixAll.args": [
+    "--extend-ignore=F841"
+  ],
+  "go.toolsManagement.autoUpdate": true
 }

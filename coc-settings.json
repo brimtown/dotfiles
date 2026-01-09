@@ -17,7 +17,7 @@
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "tsserver.maxTsServerMemory": 24576,
-    "eslint.filetypes": [
+  "eslint.filetypes": [
       "javascript",
       "javascript.jsx",
       "javascriptreact",
@@ -28,22 +28,50 @@
   "eslint.nodePath": ".yarn/sdks",
   "eslint.packageManager": "yarn",
   "prettier.prettierPath": ".yarn/sdks/prettier",
-  "tsserver.tsdk": ".yarn/sdks/typescript/lib",
+  "tsserver.tsdk": "~/.config/coc/extensions/node_modules/coc-tsserver/node_modules/typescript/lib",
   "workspace.workspaceFolderCheckCwd": false,
+  "inlayHint.enable": false,
+  "files.watcherExclude": {
+        "bazel-*/": true,
+  },
   "languageserver": {
     "terraform": {
       "command": "terraform-lsp",
       "filetypes": ["terraform"],
       "initializationOptions": {}
     },
-    "go": {
-      "command": "gopls",
-      "rootPatterns": ["go.work", "go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "usePlaceholders": true
-      }
-    }
+    // "go": {
+    //   "command": "gopls",
+    //   "rootPatterns": ["go.work", "go.mod", ".vim/", ".git/", ".hg/"],
+    //   "filetypes": ["go"],
+    //   "initializationOptions": {
+    //     "usePlaceholders": true,
+    //     // ignore bazel so gopls is faster
+    //     "build.directoryFilters": [
+    //         "-**/bazel-bin",
+    //         "-**/bazel-dd-source",
+    //         "-**/bazel-out",
+    //         "-**/bazel-testlogs",
+    //         "-.git",
+    //         "-**/node_modules",
+    //         "-bazel-bin",
+    //         "-bazel-out",
+    //         "-bazel-testlogs",
+    //         "-bazel-dd-source",
+    //     ],
+    //     // enable placeholders for function parameters when autocompleting
+    //     "ui.completion.usePlaceholders": true,
+    //     // remove unnecessary code lenses offered by gopls. These tasks are handled by bazel and gazelle.
+    //     // https://github.com/golang/tools/blob/master/gopls/doc/codelenses.md for more
+    //     "ui.codelenses": {
+    //         "generate": false,
+    //         "test": false,
+    //         "tidy": false,
+    //         "upgrade_dependency": false,
+    //         "vendor": false
+    //     },
+    //   }
+    // }
   }
 }
 
