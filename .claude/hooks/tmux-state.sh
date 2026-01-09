@@ -16,10 +16,10 @@
 #   the window will flash blue->red quickly. This is correct behavior
 #   and indicates Claude briefly ran then finished.
 
-# Debug logging (enable with: export CLAUDE_TMUX_DEBUG=1)
+# Debug logging (disable with: export CLAUDE_TMUX_DEBUG=0)
 DEBUG_LOG="/tmp/claude-tmux.log"
 debug() {
-  if [ "$CLAUDE_TMUX_DEBUG" = "1" ]; then
+  if [ "$CLAUDE_TMUX_DEBUG" != "0" ]; then
     echo "[$(date '+%H:%M:%S.%3N')] [$$] $*" >> "$DEBUG_LOG"
   fi
 }

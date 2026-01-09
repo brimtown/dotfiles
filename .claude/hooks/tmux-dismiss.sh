@@ -15,10 +15,10 @@
 #   - tmux pane = split within a window (can have multiple per window)
 #   - This script uses window index so all panes in a window share notification state
 
-# Debug logging (enable with: export CLAUDE_TMUX_DEBUG=1)
+# Debug logging (disable with: export CLAUDE_TMUX_DEBUG=0)
 DEBUG_LOG="/tmp/claude-tmux.log"
 debug() {
-  if [ "$CLAUDE_TMUX_DEBUG" = "1" ]; then
+  if [ "$CLAUDE_TMUX_DEBUG" != "0" ]; then
     echo "[$(date '+%H:%M:%S.%3N')] [dismiss] $*" >> "$DEBUG_LOG"
   fi
 }

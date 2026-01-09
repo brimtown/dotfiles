@@ -24,7 +24,6 @@
     ],
     "Notification": [
       {
-        "matcher": "permission_prompt",
         "hooks": [{ "type": "command", "command": "~/.claude/hooks/tmux-state.sh" }]
       }
     ],
