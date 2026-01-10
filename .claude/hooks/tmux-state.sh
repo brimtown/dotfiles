@@ -7,7 +7,7 @@
 #
 # State Machine:
 #   IDLE (white) -> UserPromptSubmit -> RUNNING (blue)
-#   RUNNING -> Stop/Notification -> WAITING (red)
+#   RUNNING -> Stop/Notification/PermissionRequest -> WAITING (red)
 #   WAITING -> PreToolUse -> RUNNING (blue)
 #   WAITING -> pane-focus-in -> IDLE (white)
 #
@@ -74,9 +74,13 @@ if echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"UserPromp
 
 elif echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"PreToolUse"'; then
   # Blue - Claude resumed after permission approval, about to execute tool
-  # Note: Multiple PreToolUse events may fire (one per tool), but idempotency
-  # check prevents unnecessary color changes
-  set_state "running" "#6699cc" "PreToolUse"
+  # Only transition if waiting (user approved permission)
+  # Ignore PreToolUse when idle (startup tool calls before user prompt)
+  if [ "$CURRENT_STATE" = "waiting" ]; then
+    set_state "running" "#6699cc" "PreToolUse"
+  else
+    debug "Ignoring PreToolUse in state: ${CURRENT_STATE:-<unset>}"
+  fi
 
 elif echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"Notification"'; then
   # Red - Claude needs permission to proceed
@@ -98,6 +102,18 @@ elif echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"Stop"';
   if [ "$WINDOW" != "$FOCUSED" ]; then
     debug "Showing notification (user in window $FOCUSED)"
     tmux display-message -d 2500 "Claude needs input in window ($WINDOW)" 2>/dev/null
+  else
+    debug "Skipping notification (user already in Claude window)"
+  fi
+
+elif echo "$input" | grep -q '"hook_event_name"[[:space:]]*:[[:space:]]*"PermissionRequest"'; then
+  # Red - Claude needs permission to run a tool
+  set_state "waiting" "#EC5f67" "PermissionRequest"
+
+  # Show tmux popup notification if user is in a different window
+  if [ "$WINDOW" != "$FOCUSED" ]; then
+    debug "Showing notification (user in window $FOCUSED)"
+    tmux display-message -d 2500 "Claude needs permission in window ($WINDOW)" 2>/dev/null
   else
     debug "Skipping notification (user already in Claude window)"
   fi

@@ -1,0 +1,93 @@
+# Print git commit hashes (newest first)
+# Usage: cherryPickHashes <count>
+cherryPickHashes() {
+  echo "Newest revision at top"
+  git log --format=format:%H | head -"$1"
+}
+
+# Transform a tmux window - change all panes to a new directory
+# Usage: tmuxTransform [path|name]  (alias: tt)
+#   tt              - fzf picker
+#   tt site         - find repo named "site"
+#   tt ~/code/foo   - use exact path
+#
+# Configure repo roots per-machine:
+#   export TMUX_TRANSFORM_ROOTS=(~/Development ~/work/repos)
+tmuxTransform() {
+  local target="$1"
+
+  # Default roots - override with TMUX_TRANSFORM_ROOTS env var
+  local roots
+  if [[ ${#TMUX_TRANSFORM_ROOTS[@]} -gt 0 ]]; then
+    roots=("${TMUX_TRANSFORM_ROOTS[@]}")
+  else
+    roots=("$HOME/Development" "$HOME/dotfiles" "$HOME/dd")
+  fi
+
+  # Find git repos under roots (filter to existing dirs)
+  local existing_roots=()
+  for r in "${roots[@]}"; do
+    [[ -d "$r" ]] && existing_roots+=("$r")
+  done
+
+  # Get all repos once
+  local all_repos
+  all_repos=$(find "${existing_roots[@]}" -maxdepth 5 -name ".git" -type d 2>/dev/null | sed 's/\/.git$//')
+
+  if [[ -z "$target" ]]; then
+    # No arg - fzf picker
+    target=$(echo "$all_repos" | fzf --prompt="Transform to: " --height=40%)
+  elif [[ ! -d "$target" ]]; then
+    # Arg given but not a directory - search by name
+    local matches=()
+    while IFS= read -r repo; do
+      [[ -z "$repo" ]] && continue
+      if [[ "$(basename "$repo")" == "$target" ]]; then
+        matches+=("$repo")
+      fi
+    done <<< "$all_repos"
+
+    if [[ ${#matches[@]} -eq 0 ]]; then
+      echo "No repo found matching: $target"
+      return 1
+    elif [[ ${#matches[@]} -eq 1 ]]; then
+      target="${matches[1]}"  # zsh arrays are 1-indexed
+    else
+      # Multiple matches - let user pick
+      target=$(printf '%s\n' "${matches[@]}" | fzf --prompt="Multiple matches: " --height=40%)
+    fi
+  fi
+
+  [[ -z "$target" ]] && return 1
+
+  # Expand ~ if present
+  target="${target/#\~/$HOME}"
+
+  local window_name=$(basename "$target")
+  local current_pane="$TMUX_PANE"
+
+  for pane in $(tmux list-panes -F '#{pane_id}'); do
+    # Skip the pane we're running from
+    [[ "$pane" == "$current_pane" ]] && continue
+
+    local cmd=$(tmux display-message -p -t "$pane" '#{pane_current_command}')
+
+    if [[ "$cmd" =~ ^n?vim$ ]]; then
+      # For vim/nvim, change directory within the editor
+      tmux send-keys -t "$pane" Escape ":cd $target" Enter
+    elif [[ "$cmd" == "zsh" || "$cmd" == "bash" ]]; then
+      # Shell is idle, just cd
+      tmux send-keys -t "$pane" "cd $target" Enter
+    else
+      # Kill process and respawn shell in target directory
+      tmux respawn-pane -k -t "$pane" -c "$target"
+    fi
+  done
+
+  # Handle current pane last (where we're running from)
+  cd "$target" || return 1
+
+  tmux rename-window "$window_name"
+  echo "Transformed to: $target"
+}
+

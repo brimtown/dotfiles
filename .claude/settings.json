@@ -32,6 +32,11 @@
         "hooks": [{ "type": "command", "command": "~/.claude/hooks/tmux-state.sh" }]
       }
     ],
+    "PermissionRequest": [
+      {
+        "hooks": [{ "type": "command", "command": "~/.claude/hooks/tmux-state.sh" }]
+      }
+    ],
     "SessionEnd": [
       {
         "hooks": [{ "type": "command", "command": "~/.claude/hooks/tmux-state.sh" }]

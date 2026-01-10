@@ -20,6 +20,9 @@ ZSH_THEME="sorin"
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
 
+# Disable oh-my-zsh auto-update checks (run `omz update` manually)
+DISABLE_AUTO_UPDATE="true"
+
 # Explicitly set the buffer size for performance
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
 ZSH_AUTOSUGGEST_MANUAL_REBIND="true"
@@ -69,6 +72,7 @@ bindkey '^[[Z' autosuggest-execute
 # For a full list of active aliases, run `alias`.
 #
 source ~/.alias
+source ~/.functions
 source ~/.credentials
 source ~/.dd-zshrc
 

@@ -1,7 +1,5 @@
-cherryPickHashes() {
-  echo "Newest revision at top"
-  git log --format=format:%H | head -"$1"
-}
+alias c='claude'
+alias cr='claude --resume'
 # Git specific
 alias gam='git commit --amend --no-edit'
 alias gb="git branch -v --sort='-committerdate:iso8601' --format='%(align:width=40)%(refname:short)%(end)(%(committerdate:relative))'"
@@ -15,7 +13,8 @@ alias gpf='git push --force-with-lease'
 alias gs='git status'
 alias gup='git pull --rebase'
 alias up=gup
-alias gsha=cherryPickHashes
+alias gsha='cherryPickHashes'
+alias tt='tmuxTransform'
 alias rebasemaster='git fetch && git rebase origin/master'
 alias rebaseprod='git fetch &&git rebase origin/preprod'
 alias rebasepreprod=rebaseprod
