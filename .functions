@@ -23,6 +23,7 @@ ss() {
 # Usage: gwt <branch-name> [base-branch]
 # Example: gwt my-feature        (branches from current HEAD)
 # Example: gwt my-feature main   (branches from main)
+unalias gwt 2>/dev/null
 gwt() {
   local branch="$1"
   local base="${2:-HEAD}"
@@ -64,11 +65,9 @@ gwt() {
   fi
 }
 
-# List all worktrees for current repo
-alias gwl='git worktree list'
-
 # Delete a worktree and its branch
 # Usage: gwd <branch-name>
+unalias gwd 2>/dev/null
 gwd() {
   local branch="$1"
 
@@ -121,7 +120,11 @@ tmuxTransform() {
 
   # Get all repos once
   local all_repos
-  all_repos=$(find "${existing_roots[@]}" -maxdepth 5 -name ".git" \( -type d -o -type f \) 2>/dev/null | sed 's/\/.git$//')
+  all_repos=$(
+    for root in "${existing_roots[@]}"; do
+      (cd "$root" 2>/dev/null && find . -maxdepth 5 -name ".git" \( -type d -o -type f \) 2>/dev/null | sed "s|^\./||; s|/\.git$||; s|^\.git$||; s|^|$root/|; s|/$||")
+    done
+  )
 
   if [[ -z "$target" ]]; then
     # No arg - fzf picker

@@ -14,6 +14,7 @@ alias gs='git status'
 alias gup='git pull --rebase'
 alias up=gup
 alias gsha='cherryPickHashes'
+alias gwl='git worktree list'
 alias tt='tmuxTransform'
 alias rebasemaster='git fetch && git rebase origin/master'
 alias rebaseprod='git fetch &&git rebase origin/preprod'
