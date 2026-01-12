@@ -5,6 +5,86 @@ cherryPickHashes() {
   git log --format=format:%H | head -"$1"
 }
 
+# Create a new worktree for a repo
+# Usage: gwt <branch-name> [base-branch]
+# Example: gwt my-feature        (branches from current HEAD)
+# Example: gwt my-feature main   (branches from main)
+gwt() {
+  local branch="$1"
+  local base="${2:-HEAD}"
+
+  if [[ -z "$branch" ]]; then
+    echo "Usage: gwt <branch-name> [base-branch]"
+    return 1
+  fi
+
+  # Get repo root and name
+  local repo_root=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [[ -z "$repo_root" ]]; then
+    echo "Not in a git repository"
+    return 1
+  fi
+
+  local repo_name=$(basename "$repo_root")
+  # Strip any existing worktree suffix to get base name
+  repo_name="${repo_name%%-*}"
+
+  local worktree_path="$(dirname "$repo_root")/${repo_name}-${branch}"
+
+  # Fetch latest if basing on remote branch
+  if [[ "$base" == "main" || "$base" == "master" || "$base" == "origin/"* ]]; then
+    git fetch origin
+    [[ "$base" != "origin/"* ]] && base="origin/$base"
+  fi
+
+  git worktree add "$worktree_path" -b "$branch" "$base" || return 1
+
+  # Symlink .claude/ to main repo for centralized conversations
+  if [[ -d "$repo_root/.claude" ]]; then
+    ln -s "$repo_root/.claude" "$worktree_path/.claude"
+  fi
+
+  echo ""
+  echo "Created worktree at: $worktree_path"
+
+  # Auto-transform tmux window if in tmux
+  if [[ -n "$TMUX" ]]; then
+    tmuxTransform "$worktree_path"
+  else
+    echo "To switch: cd $worktree_path"
+  fi
+}
+
+# List all worktrees for current repo
+alias gwl='git worktree list'
+
+# Delete a worktree and its branch
+# Usage: gwd <branch-name>
+gwd() {
+  local branch="$1"
+
+  if [[ -z "$branch" ]]; then
+    echo "Usage: gwd <branch-name>"
+    git worktree list
+    return 1
+  fi
+
+  local repo_root=$(git rev-parse --show-toplevel 2>/dev/null)
+  local repo_name=$(basename "$repo_root")
+  repo_name="${repo_name%%-*}"
+
+  local worktree_path="$(dirname "$repo_root")/${repo_name}-${branch}"
+
+  if [[ -d "$worktree_path" ]]; then
+    git worktree remove "$worktree_path"
+    git branch -D "$branch" 2>/dev/null && echo "Deleted branch: $branch"
+    echo "Removed worktree: $worktree_path"
+  else
+    echo "Worktree not found: $worktree_path"
+    git worktree list
+  fi
+}
+
 # Transform a tmux window - change all panes to a new directory
 # Usage: tmuxTransform [path|name]  (alias: tt)
 #   tt              - fzf picker
@@ -32,7 +112,7 @@ tmuxTransform() {
 
   # Get all repos once
   local all_repos
-  all_repos=$(find "${existing_roots[@]}" -maxdepth 5 -name ".git" -type d 2>/dev/null | sed 's/\/.git$//')
+  all_repos=$(find "${existing_roots[@]}" -maxdepth 5 -name ".git" \( -type d -o -type f \) 2>/dev/null | sed 's/\/.git$//')
 
   if [[ -z "$target" ]]; then
     # No arg - fzf picker
