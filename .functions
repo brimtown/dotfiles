@@ -53,11 +53,6 @@ gwt() {
 
   git worktree add "$worktree_path" -b "$branch" "$base" || return 1
 
-  # Symlink .claude/ to main repo for centralized conversations
-  if [[ -d "$repo_root/.claude" ]]; then
-    ln -s "$repo_root/.claude" "$worktree_path/.claude"
-  fi
-
   echo ""
   echo "Created worktree at: $worktree_path"
 
