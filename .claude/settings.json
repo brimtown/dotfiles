@@ -5,10 +5,31 @@
   },
   "permissions": {
     "allow": [
-      "Bash(gh pr diff:*)",
-      "Bash(gh repo view:*)",
-      "Bash(gh pr checks:*)",
-      "Bash(gh pr view:*)"
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch*)",
+      "Bash(git show*)",
+      "Bash(git remote*)",
+      "Bash(git fetch*)",
+      "Bash(gh pr view*)",
+      "Bash(gh pr list*)",
+      "Bash(gh pr diff*)",
+      "Bash(gh pr checks*)",
+      "Bash(gh repo view*)",
+      "Bash(gh issue view*)",
+      "Bash(gh issue list*)",
+      "Bash(ls*)",
+      "Bash(pwd)",
+      "Bash(which *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(file *)"
     ]
   },
   "hooks": {

@@ -5,6 +5,20 @@ cherryPickHashes() {
   git log --format=format:%H | head -"$1"
 }
 
+# Source shell config in all idle tmux panes
+# Usage: ss
+ss() {
+  local count=0
+  for pane in $(tmux list-panes -a -F '#{pane_id}'); do
+    local cmd=$(tmux display-message -p -t "$pane" '#{pane_current_command}')
+    if [[ "$cmd" == "zsh" || "$cmd" == "bash" ]]; then
+      tmux send-keys -t "$pane" "source ~/.functions" Enter
+      ((count++))
+    fi
+  done
+  echo "Sourced in $count shell(s)"
+}
+
 # Create a new worktree for a repo
 # Usage: gwt <branch-name> [base-branch]
 # Example: gwt my-feature        (branches from current HEAD)
@@ -25,11 +39,11 @@ gwt() {
     return 1
   fi
 
-  local repo_name=$(basename "$repo_root")
-  # Strip any existing worktree suffix to get base name
-  repo_name="${repo_name%%-*}"
+  # Get main worktree path (first line of git worktree list)
+  local main_worktree=$(git worktree list --porcelain | head -1 | sed 's/worktree //')
+  local repo_name=$(basename "$main_worktree")
 
-  local worktree_path="$(dirname "$repo_root")/${repo_name}-${branch}"
+  local worktree_path="$(dirname "$main_worktree")/${repo_name}-${branch}"
 
   # Fetch latest if basing on remote branch
   if [[ "$base" == "main" || "$base" == "master" || "$base" == "origin/"* ]]; then
@@ -69,11 +83,11 @@ gwd() {
     return 1
   fi
 
-  local repo_root=$(git rev-parse --show-toplevel 2>/dev/null)
-  local repo_name=$(basename "$repo_root")
-  repo_name="${repo_name%%-*}"
+  # Get main worktree path (first line of git worktree list)
+  local main_worktree=$(git worktree list --porcelain | head -1 | sed 's/worktree //')
+  local repo_name=$(basename "$main_worktree")
 
-  local worktree_path="$(dirname "$repo_root")/${repo_name}-${branch}"
+  local worktree_path="$(dirname "$main_worktree")/${repo_name}-${branch}"
 
   if [[ -d "$worktree_path" ]]; then
     git worktree remove "$worktree_path"
