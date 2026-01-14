@@ -28,6 +28,7 @@
       "Bash(file *)"
     ]
   },
+  "model": "opus",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -90,9 +91,13 @@
       }
     ]
   },
-  "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline-command.sh"
   },
-  "alwaysThinkingEnabled": true,
-  "model": "opus"
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "claude-fortress@claude-fortress": true
+  },
+  "alwaysThinkingEnabled": true
 }
