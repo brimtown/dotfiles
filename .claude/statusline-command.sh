@@ -64,5 +64,5 @@ if git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
 fi
 
 # Output
-printf '\033[36m%s\033[0m%s  \033[33m⬡\033[0m %s  %s%% %b%s\033[0m (%sk/%sk)  \033[32m⏱\033[0m %sm  \033[90mv%s\033[0m' \
+printf '\033[36m%s\033[0m%s  \033[33m❋\033[0m %s  %s%% %b%s\033[0m (%sk/%sk)  \033[32m⏱\033[0m %sm  \033[90mv%s\033[0m' \
   "$project_path" "$git_info" "$model" "$ctx_pct" "$bar_color" "$bar" "$ctx_used" "$ctx_total" "$duration_min" "$version"
