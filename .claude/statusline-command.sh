@@ -14,8 +14,9 @@ duration_ms=$(echo "$input" | $JQ -r '.cost.total_duration_ms')
 duration_min=$((duration_ms / 60000))
 version=$(echo "$input" | $JQ -r '.version')
 
-# Context bar (10 chars)
+# Context bar (10 fillable chars + marker at 80%)
 bar_width=10
+threshold_pos=8
 filled_exact=$((ctx_pct * bar_width))
 bar_filled=$((filled_exact / 100))
 remainder=$((filled_exact % 100))
@@ -31,12 +32,20 @@ else
   partial=""
 fi
 
-# Build bar with ░ for empty
-bar_empty=$((bar_width - bar_filled - ${#partial}))
-bar=""
-for ((i=0; i<bar_filled; i++)); do bar+="█"; done
-bar+="$partial"
-for ((i=0; i<bar_empty; i++)); do bar+="░"; done
+# Build bar chars
+bar_chars=""
+for ((i=0; i<bar_width; i++)); do
+  if [ $i -lt $bar_filled ]; then
+    bar_chars+="█"
+  elif [ $i -eq $bar_filled ] && [ -n "$partial" ]; then
+    bar_chars+="$partial"
+  else
+    bar_chars+="░"
+  fi
+done
+
+# Insert threshold marker at 80%
+bar="${bar_chars:0:threshold_pos}│${bar_chars:threshold_pos}"
 
 # Bar color based on usage
 if [ $ctx_pct -ge 80 ]; then
