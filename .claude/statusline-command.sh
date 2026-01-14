@@ -1,6 +1,6 @@
 #!/bin/bash
 input=$(cat)
-JQ=/usr/local/bin/jq
+JQ=$(command -v jq)
 
 # Parse fields
 cwd=$(echo "$input" | $JQ -r '.workspace.project_dir')
